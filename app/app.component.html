@@ -1,0 +1,50 @@
+<mat-toolbar color="primary">
+  Angular Material 2 App
+</mat-toolbar>
+<div class="basic-container">
+  <p>
+  <button mat-button (click)="reloadForm()">Switch toggle status & reload</button>
+  Controls should be {{isToggleEnabled?"enabled":"disabled"}}.
+  </p>
+  <form class="example-form" [formGroup]="formGroup">
+    <div>
+      start:
+      <mat-form-field>
+        <input matInput [matDatepicker]="start" placeholder="Choose a date" formControlName="startDate">
+        <mat-error *ngIf="this.formGroup.controls.startDate.hasError('required')">
+          Nicht leer
+        </mat-error>
+
+        <mat-error *ngIf="this.formGroup.controls.startDate.hasError('startAfterEnd')">
+          Enddatum
+        </mat-error>
+        <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
+        <mat-datepicker #start></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+
+     <div>
+      end:
+      <mat-form-field>
+        <input matInput [matDatepicker]="end" placeholder="Choose a date" formControlName="endDate">
+           <mat-error *ngIf="this.formGroup.controls.endDate.hasError('required')">
+          Nicht leer
+        </mat-error>
+
+        <mat-error *ngIf="this.formGroup.controls.endDate.hasError('endBeforeStart')">
+          Enddatum
+        </mat-error>
+        <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
+        <mat-datepicker #end></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+
+<!--
+Copyright Google LLC All Rights Reserved.
+
+Use of this source code is governed by an MIT-style license that can be
+found in the LICENSE file at https://angular.io/license
+-->
